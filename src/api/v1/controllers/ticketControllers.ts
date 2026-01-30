@@ -17,5 +17,11 @@ export const createTicket = (req: Request, res: Response): void =>  {
 
 export const updateTicket = (req: Request, res: Response): void => {
     const updatedTicket: Ticket = req.body
-    const result: Ticket | undefined = update
+    const result: Ticket | undefined = updateTicketService(Number(req.params.id), updatedTicket)
+
+    if(result) {
+        res.status(HTTP_STATUS.OK).json({ message: "Ticket Updated.", data: result})
+    } else {
+        res.status(HTTP_STATUS.NOT_FOUND).json({ message: "ticket not found"})
+    }
 }
