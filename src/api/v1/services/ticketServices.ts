@@ -1,6 +1,12 @@
-import { Ticket } from "../models/models";
+import { Ticket, tickets as demoTickets } from "../models/models";
 
 const tickets: Ticket[] = []
+
+
+export const getAllTicketService = (): Ticket[] => {
+    return demoTickets
+
+}
 
 export const createTicketService = (ticket: Ticket): Ticket => {
     tickets.push(ticket)

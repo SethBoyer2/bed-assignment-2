@@ -1,17 +1,23 @@
 import express, { Express } from "express";
 import { HealthCheckResponse } from "./api/v1/models/models";
 import { ticketRouter } from "./api/v1/routes/ticketRoutes";
-import morgan from "node_modules/@types/morgan";
+import morgan from "morgan";
+
 
 // Initialize Express application
 const app: Express = express();
 
-app.use(express.json())
+
 
 app.use(morgan("combined"))
 
+app.use(express.json())
 app.use("/api/v1", ticketRouter)
 
+app.post("/test", (req, res) => {
+    console.log(req.body)
+    res.send('ok')
+})
 
 app.get("/api/v1/health", (req, res) => {
     const healthData: HealthCheckResponse = {

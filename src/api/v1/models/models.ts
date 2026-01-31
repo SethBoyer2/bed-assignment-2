@@ -11,7 +11,7 @@ export interface Ticket {
     description: string,
     priority: string,
     status: string,
-    createdAt: Date
+    createdAt: string
 }
 
 export const tickets = [
