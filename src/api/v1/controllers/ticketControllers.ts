@@ -155,14 +155,4 @@ export const urgencyScoreCalculation = (req: Request, res: Response): void => {
   });
 };
 
-// TypeError: Cannot read properties of undefined (reading 'priority')
-//     at urgencyScoreCalculation (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\src\api\v1\controllers\ticketControllers.ts:106:44)
-//     at Layer.handleRequest (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\lib\layer.js:152:17)
-//     at next (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\lib\route.js:157:13)
-//     at Route.dispatch (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\lib\route.js:117:3)
-//     at handle (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\index.js:435:11)
-//     at Layer.handleRequest (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\lib\layer.js:152:17)
-//     at C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\index.js:295:15
-//     at param (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\index.js:600:14)
-//     at param (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\index.js:610:14)
-//     at processParams (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\node_modules\router\index.js:664:3)
+
