@@ -1,8 +1,9 @@
 import express, { Router } from "express";
-import { createTicket, updateTicket, getAllTickets, getTicketById, deleteTicket } from "../controllers/ticketControllers";
+import { createTicket, updateTicket, getAllTickets, getTicketById, deleteTicket, urgencyScoreCalculation } from "../controllers/ticketControllers";
 
 export const ticketRouter: Router = express.Router()
 
+ticketRouter.get("/tickets/:id/urgency", urgencyScoreCalculation)
 ticketRouter.get("/tickets/:id", getTicketById)
 ticketRouter.delete("/tickets/:id", deleteTicket);
 ticketRouter.put("/tickets/:id", updateTicket)
