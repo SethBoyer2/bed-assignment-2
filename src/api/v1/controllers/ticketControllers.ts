@@ -10,7 +10,6 @@ import {
   urgencyScoreService,
 } from "../services/ticketServices";
 
-
 export const getAllTickets = (req: Request, res: Response): void => {
   try {
     const tickets = getAllTicketService();
@@ -95,39 +94,66 @@ export const updateTicket = (req: Request, res: Response): void => {
 };
 
 export const urgencyScoreCalculation = (req: Request, res: Response): void => {
-  let priorityMap = new Map([
+  const id = Number(req.params.id);
+
+  const ticket = getTicketByIdService(id);
+
+  if (!ticket) {
+    res
+      .status(HTTP_STATUS.NOT_FOUND)
+      .json({ message: "Ticket invalid or not found" });
+    return;
+  }
+
+  //  map rather than elif chain or long switchcase for deciding baseScore values based on priority
+  let priorityMap = new Map<string, number>([
     ["low", 10],
     ["medium", 20],
     ["high", 30],
     ["critical", 50],
   ]);
 
-  const calculatedTicket = req.body
-  let baseScore = priorityMap.get(req.body.priority);
-  let urgencyScore: number
+  // grab baseScore from the map, using the ticket priority string as the key
+  let baseScore = priorityMap.get(ticket.priority);
 
-  if (baseScore) {
-    const ticketDate = req.body.createdAt;
-    const milliPerDay = 1000 * 60 * 60 * 24;
-    const ticketAge = Math.floor(Date.now() - ticketDate / milliPerDay);
-    urgencyScore = (baseScore + (ticketAge * 5));
-    calculatedTicket.urgency = urgencyScore
-  }
-
-  const result: Ticket | undefined = urgencyScoreService(
-    Number(req.params.id),
-    calculatedTicket
-  )
-
-  if(result) {
+  if (!baseScore) {
     res
-      .status(HTTP_STATUS.OK)
-      .json({ message: "Urgency Score Calculated.", data: result})
-  } else {
-    res.status(HTTP_STATUS.NOT_FOUND).json({message: "Ticket not found."})
+      .status(HTTP_STATUS.BAD_REQUEST)
+      .json({ message: "Invalid field: priority" });
+    return;
   }
-};
 
+  // Convert createdAt to milliseconds (Number) so it can be used in difference calculation
+  const createdAtAsNumber = new Date(ticket.createdAt).getTime();
+  // variable containing the milliseconds in a day
+  const milliPerDay = 1000 * 60 * 60 * 24;
+  // Calculate difference between the current date and createdAt date, in days for ticket age
+  const ticketAge = Math.floor((Date.now() - createdAtAsNumber) / milliPerDay);
+
+  const urgency = baseScore + ticketAge * 5;
+  ticket.urgency = urgency;
+
+  if (urgency  >25) {
+  ticket.urgencylevel = "medium";
+} else if (urgency >50) {
+  ticket.urgencylevel = "high";
+} else if (urgency >= 80) {
+  ticket.urgencylevel = "critical";
+} else  {
+  ticket.urgencylevel = "low";
+}
+
+  const result = urgencyScoreService(id, urgency);
+
+  if (!result) {
+    res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Ticket not found" });
+  }
+
+  res.status(HTTP_STATUS.OK).json({
+    message: "urgency calculated",
+    date: result,
+  });
+};
 
 // TypeError: Cannot read properties of undefined (reading 'priority')
 //     at urgencyScoreCalculation (C:\Users\sethb\Desktop\rrc-polytech\term3\BED\ongoing\boyer_seth-bed-assignment-2\src\api\v1\controllers\ticketControllers.ts:106:44)

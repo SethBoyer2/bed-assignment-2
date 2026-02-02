@@ -11,7 +11,9 @@ export interface Ticket {
     description: string,
     priority: string,
     status: string,
-    createdAt: string
+    createdAt: string,
+    urgency: number
+    urgencylevel: string
 }
 
 export const tickets = [
