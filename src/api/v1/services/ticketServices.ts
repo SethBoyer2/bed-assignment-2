@@ -7,7 +7,9 @@ const tickets: Ticket[] = [
     {id: 4, title: "Password reset email delayed", description: "Reset emails taking over 30 minutes", priority: "high", status: "open", createdAt: '2026-01-27T10:00:00.000Z', urgency: 0, urgencylevel: "default"},
     {id: 5, title: "Export to PDF not working", description: "PDF export fails silently", priority: "high", status: "open", createdAt: '2026-01-023T10:00:00.000Z', urgency: 0, urgencylevel: "default"},
     {id: 6, title: "Login page not loading", description: "Users report blanks screen on login", priority: "critical", status: "open", createdAt: '2026-01-26T10:00:00.000Z', urgency: 0, urgencylevel: "default"},
-    {id: 7, title: "Dark mode toggle broken", description: "dark mode doesn't persist after refresh", priority: "medium", status: "resolved", createdAt: '2026-01-22T10:00:00.000Z', urgency: 0, urgencylevel: "default"}
+    {id: 7, title: "Dark mode toggle broken", description: "dark mode doesn't persist after refresh", priority: "medium", status: "resolved", createdAt: '2026-01-22T10:00:00.000Z', urgency: 0, urgencylevel: "default"},
+    {id: 8, title: "Dark mode toggle broken", description: "dark mode doesn't persist after refresh", priority: "medium", status: "resolved", createdAt: '2026-01-17T10:00:00.000Z', urgency: 0, urgencylevel: "default"},
+    {id: 9, title: "Dark mode toggle broken", description: "dark mode doesn't persist after refresh", priority: "medium", status: "resolved", createdAt: '2026-01-20T10:00:00.000Z', urgency: 0, urgencylevel: "default"}
 ]
 
 

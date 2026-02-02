@@ -133,12 +133,12 @@ export const urgencyScoreCalculation = (req: Request, res: Response): void => {
   const urgency = baseScore + ticketAge * 5;
   ticket.urgency = urgency;
 
-  if (urgency  >25) {
-  ticket.urgencylevel = "medium";
+  if (urgency >=80) {
+  ticket.urgencylevel = "critical";
 } else if (urgency >50) {
   ticket.urgencylevel = "high";
-} else if (urgency >= 80) {
-  ticket.urgencylevel = "critical";
+} else if (urgency > 25) {
+  ticket.urgencylevel = "medium";
 } else  {
   ticket.urgencylevel = "low";
 }

@@ -3,6 +3,8 @@ import { createTicket, updateTicket, getAllTickets, getTicketById, deleteTicket,
 
 export const ticketRouter: Router = express.Router()
 
+
+
 ticketRouter.put("/tickets/:id/urgency", urgencyScoreCalculation)
 ticketRouter.get("/tickets/:id", getTicketById)
 ticketRouter.delete("/tickets/:id", deleteTicket);

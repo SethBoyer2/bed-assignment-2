@@ -12,6 +12,12 @@ app.use(morgan("combined"))
 app.use(express.json())
 app.use("/api/v1/", ticketRouter)
 
+app.put("/api/v1/tickets/:id/urgency", (req, res) => {
+  console.log("BODY:", req.body); // see exactly what Express received
+  res.sendStatus(200);
+});
+
+
 app.get("/api/v1/health", (req, res) => {
     const healthData: HealthCheckResponse = {
         status: "OK",
